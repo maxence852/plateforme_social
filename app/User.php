@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @property mixed isAdmin
+ */
 class User extends Authenticatable
 {
     /**
@@ -23,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return ($this->isAdmin ==1);
+    }
 }

@@ -12,7 +12,7 @@ class ForumTableSeeder extends Seeder
             'title' => 'General Discussion',
             'author_id' => 1
         ));
-        /*ForumGroup::create(array(
+        /*ForumGroup::create(array(             //cette façon d'écrire était pour laravl 4
             'title' => 'General Discussion',
             'author_id' => 1
         ));*/

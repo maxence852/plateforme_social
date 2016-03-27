@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,9 +39,43 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 });
 
-Route::group(array('prefix'=> '/forum'), function()
+/*Route::group(array('prefix'=> '/forum'), function()
 {
     Route::get('/', array('uses' => 'ForumController@index', 'as' => 'forum-home'));
     Route::get('/category/{id}', array('uses' => 'ForumController@category', 'as' => 'forum-category'));
     Route::get('/thread/{id}', array('uses' => 'ForumController@thread', 'as' => 'forum-thread'));
+});*/
+Route::group(['middleware' => 'web'], function () {
+Route::group(['prefix'=> '/forum'], function ()
+{
+    Route::auth();
+
+    Route::get('/',[
+        'as' => '/forum-home', 'uses' =>'ForumController@index'
+    ]);
+    Route::get('/category/{id}',[
+       'as'=> '/forum-category', 'uses' => 'ForumController@category'
+    ]);
+    Route::get('/thread/{id}',[
+        'as'=> 'forum-thread', 'uses' => 'ForumController@thread'
+    ]);
+    Route::group(['before'=> 'admin'], function ()
+    {
+        Route::group(['before'=> 'csrf'], function ()
+        {
+            Route::post('/group', [
+                'as' => 'forum-store-group', 'uses' => "ForumController@storeGroup"
+            ]);
+        });
+
+    });
 });
+});
+//'ForumController@index')->name('forum-home');
+//Route::get('/category/{id}','ForumController@category');
+//Route::get('/category/{id}', array('uses' => 'ForumController@category', 'as' => 'forum-category'));
+//Route::get('/thread/{id}', array('uses' => 'ForumController@thread', 'as' => 'forum-thread'));
+// Route::get('/forum',['as' => 'forum-home', 'uses'=> 'ForumController@index']);
+//Route::get('/forum','ForumController@index')-> name('forum-home');
+//Route::get('/forum','ForumController@index');
+//Route::get('/category/{id}','ForumController@category');

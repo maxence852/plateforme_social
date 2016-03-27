@@ -1,4 +1,5 @@
 <?php
+namespace App\models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,7 +14,7 @@ class ForumGroup extends Model
  {
     protected $table = 'forum_groups';
 
-    public static function create($array)
+   /* public static function create($array)
     {
-    }
+    }*/
 }

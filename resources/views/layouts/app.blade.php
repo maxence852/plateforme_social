@@ -14,6 +14,7 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href={{asset('/css/style.css')}}>
 
     <style>
         body {
@@ -48,7 +49,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Accueil</a></li>
-                    <li><a href="{{ url('/forum-home') }}">Forum</a></li>
+                    <li><a href="{{ route('/forum-home') }}">Forum</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -71,13 +72,23 @@
                 </ul>
             </div>
         </div>
+        <!--va permettre d'afficher des msg de success ou d'erreur -> voir ForumController dans la function storeGroup pour exemple -->
+        @if(Session::has('success'))
+            <div class="alert alert-success">{{Session::get('success')}}</div>
+            @elseif(Session::has('fail'))
+            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+            @endif
     </nav>
+     <div class="container">@yield('content')</div>
 
-    @yield('content')
+    @section('javascript')
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <!-- JQuerry -->
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js" type="text/javascript"></script>
+@show
 </body>
 </html>
