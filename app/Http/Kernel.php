@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'admin' => \App\Http\Middleware\admin::class, //déclaré une nouvelle route middleware
+        'admin' => \App\Http\Middleware\admin::class, //j'ai déclaré une nouvelle route middleware comme vu ds la vidéo 8
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,

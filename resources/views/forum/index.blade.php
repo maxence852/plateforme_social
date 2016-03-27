@@ -12,10 +12,16 @@
         <a href="#" class="btn btn-default" data-toggle="modal" data-target="#group_form">Add Group</a>
     </div>
 @endif
+
+
 @foreach($groups as $group)
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">{{$group->title}}</h3>
+            <div class="clearfix">
+                <h3 class="panel-title pull-left">{{$group->title}}</h3>
+                <!-- bouton supprimer groupe discussion-->
+                <a id="{{$group->id}}" href="#" data-toggle="modal" data-target="#group_delete" class="btn btn-danger btn-xs pull-right delete_group">Supprimer</a>
+            </div>
         </div>
         <div class="panel-body panel-list-group">
             <div class="list-group">
@@ -27,9 +33,12 @@
             </div>
         </div>
     </div>
-
     @endforeach
+
+
 <!-- note : pour que le form fonctionne correctement j'ai du suivre les 1ère étapes ici https://laravelcollective.com/docs/5.2/html -->
+
+    <!-- modal d'ajout d'un groupe de discussion -->
     @if(Auth::check() && Auth::user()->isAdmin)
         <div class="modal fade" id="group_form" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -49,7 +58,7 @@
                                 <input type="text" id="group_name" name="group_name" class="form-control">
                                 @if($errors->has('group_name'))
                                     <p>{{$errors->first('group_name')}}</p>
-                                    @endif
+                                @endif
                             </div>
                             {{Form::token()}}
                         </form>
@@ -63,7 +72,30 @@
         </div>
     @endif
 
+
+    <!-- modal de suppression d'un groupe de discussion -->
+    <div class="modal fade" id="group_delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Supprimer le groupe de discussion</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Etes-vous sûr de vouloir supprimer ce groupe de discussion ?</h3>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <a href="#" type="button" class="btn btn-primary" id="btn_delete_group">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
     @stop
+
 
 @section('javascript')
     @parent

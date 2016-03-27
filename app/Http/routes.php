@@ -61,6 +61,9 @@ Route::group(['prefix'=> '/forum'], function ()
     ]);
     Route::group(['before'=> 'admin'], function ()
     {
+        Route::get('/group/{id}/delete',[
+            'as'=> 'forum-delete-group', 'uses' => 'ForumController@deleteGroup'
+        ]);
         Route::group(['before'=> 'csrf'], function ()
         {
             Route::post('/group', [

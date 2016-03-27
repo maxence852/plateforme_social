@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use App\models\ForumCategory;
+use App\models\ForumComment;
 use App\models\ForumGroup;
 use App\Http\Requests;
+use App\models\ForumThread;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +57,7 @@ class ForumController extends BaseController
                 return Redirect('/forum')->with('fail', 'Une erreur est survenu en tentant de sauvegarder le groupe');
             }
         }
-
+            // bout de code de base de Laravel 4
             /*$validator = Validator::make(array(
                    'group_name' => 'required|unique:forum_groups'
                 ), Input::all());
@@ -64,6 +66,44 @@ class ForumController extends BaseController
                     return Redirect::route('forum-home')-> withInput()->withErrors($validator)->with('modal', '#group_form');
                 }*/
 
+    }
+    public function deleteGroup($id)
+    {
+        $group = ForumGroup::find($id);
+        if($group == null)
+        {
+            return Redirect('/forum')->with('fail', 'Le groupe de discussion n\'existe pas.');
+        }
+
+        $categories = ForumCategory::where('group_id', $id);
+        $threads = ForumThread::where('group_id', $id);
+        $comments = ForumComment::where('group_id', $id);
+
+        $delCa = true;
+        $delT = true;
+        $delCo = true;
+
+        if($categories->count()>0)
+        {
+            $delCa =  $categories->delete();
+        }
+        if($threads->count()>0)
+        {
+            $delT = $threads ->delete();
+        }
+        if($comments->count()>0)
+        {
+            $delCo = $comments->delete();
+        }
+
+        if($delCa && $delT && $delCo && $group->delete())
+        {
+            return Redirect('/forum')->with('success', 'Le groupe a été supprimé avec succes.');
+        }
+        else
+        {
+            return Redirect('/forum')->with('fail', 'Une erreur est survenu en tentant de supprimer le groupe');
+        }
     }
 
 }
