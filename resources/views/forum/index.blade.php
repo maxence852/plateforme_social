@@ -74,26 +74,28 @@
 
 
     <!-- modal de suppression d'un groupe de discussion -->
-    <div class="modal fade" id="group_delete" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title">Supprimer le groupe de discussion</h4>
-                </div>
-                <div class="modal-body">
-                    <h3>Etes-vous sûr de vouloir supprimer ce groupe de discussion ?</h3>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <a href="#" type="button" class="btn btn-primary" id="btn_delete_group">Supprimer</a>
+        @if(Auth::check() && Auth::user()->isAdmin)
+            <div class="modal fade" id="group_delete" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title">Supprimer le groupe de discussion</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Etes-vous sûr de vouloir supprimer ce groupe de discussion ?</h3>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            <a href="#" type="button" class="btn btn-primary" id="btn_delete_group">Supprimer</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-        </div>
+    @endif
     @stop
 
 
