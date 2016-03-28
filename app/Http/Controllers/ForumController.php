@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\models;
 use App\models\ForumCategory;
 use App\models\ForumComment;
 use App\models\ForumGroup;
@@ -75,9 +76,9 @@ class ForumController extends BaseController
             return Redirect('/forum')->with('fail', 'Le groupe de discussion n\'existe pas.');
         }
 
-        $categories = ForumCategory::where('group_id', $id);
-        $threads = ForumThread::where('group_id', $id);
-        $comments = ForumComment::where('group_id', $id);
+        $categories = $group->categories(); // avant c'était noté ForumCategory::where('group_id', $id); mais grâche à la relation on note ce qui est noté mtn. car ds models\ForumGroup il y'a la function categories. #vidéo9
+        $threads = $group->threads();
+        $comments = $group->comments();
 
         $delCa = true;
         $delT = true;

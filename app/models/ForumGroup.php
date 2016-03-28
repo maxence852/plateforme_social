@@ -16,15 +16,15 @@ class ForumGroup extends Model
 
     public function categories()
     {
-        return $this->hasMany('ForumCategory','group_id');
+        return $this->hasMany('App\models\ForumCategory','group_id');
     }
     public function threads()
     {
-        return $this->hasMany('ForumThread','group_id');
+        return $this->hasMany('App\models\ForumThread','group_id');
     }
     public function comments()
     {
-        return $this->hasMany('ForumComment','group_id');
+        return $this->hasMany('App\models\ForumComment','group_id');
     }
 
 }

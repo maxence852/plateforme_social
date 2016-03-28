@@ -1,5 +1,6 @@
 <?php
 namespace App\models;
+use App\models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,4 +14,18 @@ use Illuminate\Database\Eloquent\Model;
 class ForumThread  extends Model
 {
     protected $table = 'forum_threads';
+
+    public function group()
+    {
+        $this->belongsTo('ForumGroup');
+    }
+    public function category()
+    {
+        $this->belongsTo('ForumCategory');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\models\ForumComment','thread_id');
+    }
 }
