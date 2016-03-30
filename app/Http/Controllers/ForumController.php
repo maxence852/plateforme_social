@@ -25,6 +25,13 @@ class ForumController extends BaseController
     }
     public function category($id)
     {
+        $category = ForumCategory::find($id);
+        if($category == null) //sécurité si si il n'existe pas. Car user peux trafiquer l'url.
+        {
+            return Redirect('/forum')->with('fail', "That category doesn't exist. ");
+        }
+        $threads = $category->threads();
+        return View('forum.category')->with('category', $category)->with('threads',$threads);
 
     }
     public function thread($id)
@@ -107,4 +114,36 @@ class ForumController extends BaseController
         }
     }
 
+    public function deleteCategory($id)
+    {
+        $category = ForumCategory::find($id);
+        if($category == null)
+        {
+            return Redirect('/forum')->with('fail', 'La category de discussion n\'existe pas.');
+        }
+
+        $threads = $category->threads();
+        $comments = $category->comments();
+
+        $delT = true;
+        $delCo = true;
+
+        if($threads->count()>0)
+        {
+            $delT = $threads ->delete();
+        }
+        if($comments->count()>0)
+        {
+            $delCo = $comments->delete();
+        }
+
+        if($delT && $delCo && $category->delete())
+        {
+            return Redirect('/forum')->with('success', 'Le category a été supprimé avec succes.');
+        }
+        else
+        {
+            return Redirect('/forum')->with('fail', 'Une erreur est survenu en tentant de supprimer le category');
+        }
+    }
 }

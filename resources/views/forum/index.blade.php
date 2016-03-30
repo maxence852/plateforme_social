@@ -8,32 +8,39 @@
 @section('content')
 
     @if(Auth::check() && Auth::user()->isAdmin)
-    <div>
-        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#group_form">Add Group</a>
-    </div>
-@endif
-
-
-@foreach($groups as $group)
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="clearfix">
-                <h3 class="panel-title pull-left">{{$group->title}}</h3>
-                <!-- bouton supprimer groupe discussion-->
-                <a id="{{$group->id}}" href="#" data-toggle="modal" data-target="#group_delete" class="btn btn-danger btn-xs pull-right delete_group">Supprimer</a>
-            </div>
+        <div>
+            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#group_form">Add Group</a>
         </div>
-        <div class="panel-body panel-list-group">
-            <div class="list-group">
-            @foreach($categories as $category)
-                @if($category->group_id == $group->id)
-                       <a  href="{{URL::route('/forum-category', $category->id) }}" class="list-group-item">{{$category->title}}</a>
+    @endif
+
+
+    @foreach($groups as $group)
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @if(Auth::check()&& Auth::user()->isAdmin)
+                    <div class="clearfix">
+                        <h3 class="panel-title pull-left">{{$group->title}}</h3>
+                        <!-- bouton supprimer groupe discussion-->
+                        <a id="{{$group->id}}" href="#" data-toggle="modal" data-target="#group_delete" class="btn btn-danger btn-xs pull-right delete_group">Supprimer</a>
+                    </div>
+                @else
+                    <div class="clearfix">
+                        <h3 class="panel-title pull-left">{{$group->title}}</h3>
+                    </div>
                 @endif
-                @endforeach
+                </div>
+            <div class="panel-body panel-list-group">
+                <div class="list-group">
+                    @foreach($categories as $category)
+                        @if($category->group_id == $group->id)
+                               <a  href="{{URL::route('forum-category', $category->id) }}" class="list-group-item">{{$category->title}}</a>
+                        @endif
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </div>
+         </div>
     @endforeach
+
 
 
 <!-- note : pour que le form fonctionne correctement j'ai du suivre les 1ère étapes ici https://laravelcollective.com/docs/5.2/html -->
@@ -95,7 +102,7 @@
                 </div>
             </div>
         </div>
-    @endif
+     @endif
     @stop
 
 
@@ -107,7 +114,5 @@
     $("{{ Session::get('modal') }}").modal('show');
     </script>
     @endif
-
-
 
 @stop
