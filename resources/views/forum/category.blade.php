@@ -21,7 +21,7 @@
                     <a id="{{$category->id}}" href="#" data-toggle="modal" data-target="#category_delete" class="btn btn-danger btn-xs pull-right delete_category">Supprimer</a>
                 </div>
                 @else
-                    <h3 class="panel-title pull-left">{{$category->title}}</h3>
+                    <h3 class="panel-title">{{$category->title}}</h3>
                 @endif
             </div>
             <div class="panel-body panel-list-group">
@@ -49,7 +49,7 @@
                         <h3>Are you sure you want to delete this category.</h3>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <a href="#" type="button" class="btn btn-primary" id="btn_delete_category">Supprimer</a>
+                            <a href="{{URL::route('forum-delete-category', $category->id)}}" type="button" class="btn btn-primary" id="btn_delete_category">Supprimer</a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,6 @@
         </div>
     @endif
     @stop
-
 @section('javascript')
     @parent
     <script type="text/javascript" src="{{asset('/js/app.js')}}"></script>

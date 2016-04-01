@@ -2,6 +2,10 @@
 namespace App\models;
 use App\models;
 use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @property  group_id
+ */
 class ForumCategory extends Model
 {
     protected $table = 'forum_categories';

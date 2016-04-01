@@ -28,17 +28,6 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
-
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-
-    Route::get('/home', 'HomeController@index');
-});
-
 /*Route::group(array('prefix'=> '/forum'), function()
 {
     Route::get('/', array('uses' => 'ForumController@index', 'as' => 'forum-home'));
@@ -47,9 +36,11 @@ Route::group(['middleware' => 'web'], function () {
 });*/
 Route::group(['middleware' => 'web'], function ()
 {
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
+
     Route::group(['prefix'=> '/forum'], function ()
     {
-        Route::auth();
 
         Route::get('/',[
             'as' => '/forum-home', 'uses' =>'ForumController@index'
@@ -62,6 +53,7 @@ Route::group(['middleware' => 'web'], function ()
         ]);
         Route::group(['before'=> 'admin'], function ()
         {
+
             Route::get('/group/{id}/delete',[
                 'as'=> 'forum-delete-group', 'uses' => 'ForumController@deleteGroup'
             ]);
@@ -73,10 +65,14 @@ Route::group(['middleware' => 'web'], function ()
                 Route::post('/group', [
                     'as' => 'forum-store-group', 'uses' => "ForumController@storeGroup"
                 ]);
+                Route::post('/category/{id}/new',[
+                    'as'=> 'forum-store-category', 'uses' => 'ForumController@storeCategory'
+                ]);
             });
 
         });
     });
+
 
         Route::group(['before'=> 'auth'], function ()
         {

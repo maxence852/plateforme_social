@@ -146,4 +146,67 @@ class ForumController extends BaseController
             return Redirect('/forum')->with('fail', 'Une erreur est survenu en tentant de supprimer le category');
         }
     }
+    public function storeCategory(Request $request,$id)
+    {
+        $validation = validator::make($request->all(), [
+            'category_name' => 'required|unique:forum_categories,title'
+        ]);
+
+        if ($validation->fails())
+        {
+            return Redirect('/forum')->withInput()->withErrors($validation)->with('modal', '#category_form');
+        }
+        else
+        {
+            $group = ForumGroup::find($id);
+
+            if($group == null)
+            {
+                return Redirect('/forum')->with('fail', "That group doesn't exist.");
+            }
+            $category = new ForumCategory;
+            $category->title = Input::get('category_name');
+            $category->author_id = Auth::user()->id;
+            $category->group_id = $id;
+
+
+            if($category->save())
+            {
+                return Redirect('/forum')->with('success', 'The category was created');
+            }
+            else
+            {
+                return Redirect('/forum')->with('fail', 'An error occured while saving the category.');
+            }
+        }
+    }
 }
+/*public function storeGroup(Request $request)
+{
+
+    $validation = validator::make($request->all(), [
+        'group_name' => 'required|unique:forum_groups,title'
+    ]);
+
+    if ($validation->fails())
+    {
+        return Redirect('/forum')->withInput()->withErrors($validation)->with('modal', '#group_form');
+    }
+    else
+    {
+        $group = new ForumGroup();
+        $group->title = Input::get('group_name');
+        $group->author_id = Auth::user()->id;
+
+        if($group->save())
+        {
+            return Redirect('/forum')->with('success', 'Le groupe a été créé avec succes');
+        }
+        else
+        {
+            return Redirect('/forum')->with('fail', 'Une erreur est survenu en tentant de sauvegarder le groupe');
+        }
+    }
+
+
+}*/
