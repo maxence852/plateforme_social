@@ -21,7 +21,6 @@
                     <div class="clearfix">
                         <h3 class="panel-title pull-left">{{$group->title}}</h3>
                         <!-- bouton supprimer et ajouter groupe discussion-->
-                        <?php echo ($group->id); ?>
                         <a id="add-category-{{$group->id}}" href="#" data-toggle="modal"data-target="#category_modal" class="btn btn-success btn-xs pull-right new_category">New Category</a>
                         <a id="{{$group->id}}" href="#" data-toggle="modal" data-target="#group_delete" class="btn btn-danger btn-xs pull-right delete_group">Supprimer</a>
                     </div>
@@ -144,11 +143,17 @@
 
 @section('javascript')
     @parent
-    <script type="text/javascript" src="{{asset('/js/app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/app.js')}}"></script>  <!-- Devrais afficher les modals quand on essaie de rentrer le même nom d'un group ou d'une catégorie dejà existant mais ne fonctionne pas -->
     @if(Session::has('modal'))
     <script type="text/javascript">
     $("{{ Session::get('modal') }}").modal('show');
     </script>
     @endif
 
+    @if(Session::has('category-modal')&& Session::has('group-id'))
+        <script type="text/javascript">
+            $("#category_form").prop('action',"forum/category/{{Session::get('group-id')}}/new");
+            $("{{ Session::get('category-modal') }}").modal('show');
+        </script>
+    @endif
 @stop
