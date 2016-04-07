@@ -6,6 +6,12 @@
     @stop
 
 @section('content')
+
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('forum-home') }}">Forums</a></li>
+        <li class="active">{{$category->title}}</li>
+    </ol>
+
     @if(Auth::check()) <!-- users doivent être loggés -->
         <div>
             <a href="{{URL::route('forum-get-new-thread', $category->id)}}" class="btn btn-default">Add Thread</a>

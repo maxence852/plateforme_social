@@ -233,6 +233,41 @@ class ForumController extends BaseController
             }
 
         }
+    }
+        public function deleteThread($id)
+    {
+       $thread = ForumThread::find($id);
+        if($thread == null)
+        {
+            return redirect()->route('forum-home')->with('fail', "That thread doesn't exist " );
+        }
+        $category_id = $thread->category_id;
+        $comments = $thread->comments;
+        if($comments->count() > 0)  //si il y'a des commentaires -> delete sinon erreur.
+        {
+            if ($comments->delete() && $thread->delete())
+            {
+                return redirect()->route('forum-category', $category_id)->with('success', "The thread was deleted.");
+            }
+            else
+            {
+                return redirect()->route('forum-home', $category_id)->with('fail', "An occured while deleting the thread.");
+            }
+        }
+            else
+            {
+                if($thread->delete())
+                {
+                    return redirect()->route('forum-category', $category_id)->with('success', "The thread was deleted.");
+                }
+                else
+                {
+                    return redirect()->route('forum-home', $category_id)->with('fail', "An occured while deleting the thread.");
+                }
+            }
+
+
 
     }
+
 }

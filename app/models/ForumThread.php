@@ -17,11 +17,11 @@ class ForumThread  extends Model
 
     public function group()
     {
-        $this->belongsTo('ForumGroup');
+       return $this->belongsTo('App\models\ForumGroup');
     }
     public function category()
     {
-        $this->belongsTo('ForumCategory');
+        return $this->belongsTo('App\models\ForumCategory');
     }
 
     public function comments()

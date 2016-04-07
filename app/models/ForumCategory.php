@@ -12,7 +12,7 @@ class ForumCategory extends Model
 
     public function group()
     {
-        $this->belongsTo('ForumGroup');
+        return $this->belongsTo('App\models\ForumGroup');
     }
 
     public function threads()

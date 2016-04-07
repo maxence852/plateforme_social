@@ -60,6 +60,9 @@ Route::group(['middleware' => 'web'], function ()
             Route::get('/category/{id}/delete',[
                 'as'=> 'forum-delete-category', 'uses' => 'ForumController@deleteCategory'
             ]);
+            Route::get('/thread/{id}/delete',[
+                'as'=> 'forum-delete-thread', 'uses' => 'ForumController@deleteThread'
+            ]);
             Route::group(['before'=> 'csrf'], function ()
             {
                 Route::post('/group', [

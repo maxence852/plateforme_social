@@ -17,15 +17,15 @@ class ForumComment extends Model
     protected $table = 'forum_comments';
     public function group()
     {
-        $this->belongsTo('ForumGroup');
+        return $this->belongsTo('App\models\ForumGroup');
     }
     public function category()
     {
-        $this->belongsTo('ForumCategory');
+        return $this->belongsTo('App\models\ForumCategory');
     }
 
     public function thread()
     {
-        $this->belongsTo('ForumThread');
+        return $this->belongsTo('App\models\ForumThread');
     }
 }

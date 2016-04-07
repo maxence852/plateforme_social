@@ -6,6 +6,9 @@
     @stop
 
 @section('content')
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('forum-home') }}">Forums</a></li>
+    </ol>
 
     @if(Auth::check() && Auth::user()->isAdmin)
         <div>
