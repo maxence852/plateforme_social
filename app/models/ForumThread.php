@@ -28,4 +28,9 @@ class ForumThread  extends Model
     {
         return $this->hasMany('App\models\ForumComment','thread_id');
     }
+
+    public function author()
+    {
+        return $this->belongsTo('App\User','author_id');
+    }
 }

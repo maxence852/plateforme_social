@@ -49,7 +49,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Accueil</a></li>
-                    <li><a href="{{ route('/forum-home') }}">Forum</a></li>
+                    <li><a href="{{ route('forum-home') }}">Forum</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

@@ -43,7 +43,7 @@ Route::group(['middleware' => 'web'], function ()
     {
 
         Route::get('/',[
-            'as' => '/forum-home', 'uses' =>'ForumController@index'
+            'as' => 'forum-home', 'uses' =>'ForumController@index'
         ]);
         Route::get('/category/{id}',[
            'as'=> 'forum-category', 'uses' => 'ForumController@category'
@@ -68,6 +68,7 @@ Route::group(['middleware' => 'web'], function ()
                 Route::post('/category/{id}/new',[
                     'as'=> 'forum-store-category', 'uses' => 'ForumController@storeCategory'
                 ]);
+
             });
 
         });
