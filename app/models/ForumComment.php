@@ -28,4 +28,9 @@ class ForumComment extends Model
     {
         return $this->belongsTo('App\models\ForumThread');
     }
+
+    public function author()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

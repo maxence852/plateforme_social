@@ -23,14 +23,12 @@
                 @if(Auth::check() && Auth::user()->isAdmin())
                 <div class="clearfix">
                     <h3 class="panel-title pull-left">{{$category->title}}</h3>
-                   <a href="{{URL::route('forum-get-new-thread', $category->id)}}" class="btn btn-success btn-xs pull-right">New Thread</a>
                     <!-- bouton supprimer groupe discussion-->
                     <a id="{{$category->id}}" href="#" data-toggle="modal" data-target="#category_delete" class="btn btn-danger btn-xs pull-right delete_category">Supprimer</a>
                 </div>
                 @else
                     <div class="clearfix">
                         <h3 class="panel-title">{{$category->title}}</h3>
-                        <a href="{{URL::route('forum-get-new-thread', $category->id)}}" class="btn btn-success btn-xs pull-right">New Thread</a>
                     </div>
                 @endif
             </div>

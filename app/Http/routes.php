@@ -63,6 +63,9 @@ Route::group(['middleware' => 'web'], function ()
             Route::get('/thread/{id}/delete',[
                 'as'=> 'forum-delete-thread', 'uses' => 'ForumController@deleteThread'
             ]);
+            Route::get('/comment/{id}/delete',[
+                'as'=> 'forum-delete-comment', 'uses' => 'ForumController@deleteComment'
+            ]);
             Route::group(['before'=> 'csrf'], function ()
             {
                 Route::post('/group', [
@@ -87,6 +90,9 @@ Route::group(['middleware' => 'web'], function ()
             {
                 Route::post('/thread/{id}/new', [
                     'as' => 'forum-store-thread', 'uses' => "ForumController@storeThread"
+                ]);
+                Route::post('/comment/{id}/new', [
+                    'as' => 'forum-store-comment', 'uses' => "ForumController@storeComment"
                 ]);
             });
         });
