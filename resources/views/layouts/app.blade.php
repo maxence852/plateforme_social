@@ -75,7 +75,6 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Se connecter</a></li>
                         <li><a href="{{ url('/register') }}">S'enregistrer</a></li>
-                        <li><a href="auth/facebook" role="button">S'inscrire avec facebook</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

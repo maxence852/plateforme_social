@@ -38,8 +38,9 @@ return [
     'facebook' => [
         'client_id' => '1597541063890879',
         'client_secret' => 'a220401dc4a770f78b9f55d002303ef7',
-        'redirect' => 'http://tfe.plateformesocial.be:8080/tfe/plateforme_social/public/auth/facebook/callback',
+        //bonne 'redirect' => 'http://tfe.plateformesocial.be:8080/tfe/plateforme_social/public/auth/facebook/callback',
         //'redirect' => 'http://localhost:8080/tfe/plateforme_social/public/login/auth/facebook/callback',
+        'redirect' => 'http://tfe.plateformesocial.be:8080/tfe/plateforme_social/public/callback',
     ],
 
     'google' => [

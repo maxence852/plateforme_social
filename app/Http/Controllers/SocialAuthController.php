@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
-
-
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 class SocialAuthController extends Controller
 {
 
@@ -16,18 +18,12 @@ class SocialAuthController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function callback()
+    public function callback(SocialAccountService $service)
     {
-        $providerUser = \Socialite::driver('facebook')->user();
-    }
+        $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
 
-    public function github_redirect() {
-        return Socialite::with('github')->redirect();
-    }
-    // to get authenticate user data
-    public function github() {
-        $user = Socialite::with('github')->user();
-        // Do your stuff with user data.
-        print_r($user);die;
+        auth()->login($user);
+
+        return redirect()->to('home2');
     }
 }

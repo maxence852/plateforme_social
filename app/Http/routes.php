@@ -42,23 +42,8 @@ Route::group(['middleware' => 'web'], function ()
 
 /*facebook*/
 
-
-Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
-Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
-
-    /*Route::get('/redirect', 'SocialAuthController@redirect');
-    Route::get('/callback', 'SocialAuthController@callback');*/
-
-    // Redirect to github to authenticate
-    Route::get('github', 'SocialAuthController@github_redirect');
-    // Get back to redirect url
-    Route::get('account/github', 'SocialAuthController@github');
-
-
-
-
-
-
+    Route::get('/redirect', 'SocialAuthController@redirect');
+    Route::get('/callback', 'SocialAuthController@callback');
 
 
     Route::get('/home2', array('as' => 'home2', 'uses' => function(){

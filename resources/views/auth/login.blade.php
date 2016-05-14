@@ -53,12 +53,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i>Se connecter
                                 </button>
-
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Mot de passe oublié</a>
-                                <!--<a href="redirect">FB Login</a>-->
-                                <a href="auth/facebook">login with facebook</a>
+                                <a class="btn btn-primary" href="redirect">se connecter via Facebook</a>
                                 <a href="redirect/google">G+</a>
-                                <a href="{!!URL::to('github')!!}">Login with Github</a>
                             </div>
                         </div>
                     </form>

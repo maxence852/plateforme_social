@@ -71,6 +71,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i>s'enregistrer
                                 </button>
+                                <a class="btn btn-primary" href="redirect">s'enregistrer via Facebook</a>
                             </div>
                         </div>
                     </form>
