@@ -13,9 +13,7 @@
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +35,35 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function ()
 {
     Route::auth();
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
+
+   Route::get('/home', 'HomeController@index');
+
+
+/*facebook*/
+
+
+Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+
+    /*Route::get('/redirect', 'SocialAuthController@redirect');
+    Route::get('/callback', 'SocialAuthController@callback');*/
+
+    // Redirect to github to authenticate
+    Route::get('github', 'SocialAuthController@github_redirect');
+    // Get back to redirect url
+    Route::get('account/github', 'SocialAuthController@github');
+
+
+
+
+
+
+
+
+    Route::get('/home2', array('as' => 'home2', 'uses' => function(){
+        return view('home2');
+    }));
 
     Route::group(['prefix'=> '/forum'], function ()
     {

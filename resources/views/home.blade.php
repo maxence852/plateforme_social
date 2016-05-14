@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     Vous êtes connectés sur la plateforme social
+                    <h4>ton nom est {{ Auth::user()->name }}</h4>
                 </div>
             </div>
         </div>

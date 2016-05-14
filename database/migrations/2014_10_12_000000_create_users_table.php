@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->enum('isAdmin', array(0,1))->default(0);
+            $table->string('facebook_id')->unique();
+            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });

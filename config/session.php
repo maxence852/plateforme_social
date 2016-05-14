@@ -135,7 +135,8 @@ return [
     |
     */
 
-    'domain' => null,
+    //'domain' => null,
+    'domain' => 'tfe.plateformesocial.be',
 
     /*
     |--------------------------------------------------------------------------

@@ -35,4 +35,24 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => '1597541063890879',
+        'client_secret' => 'a220401dc4a770f78b9f55d002303ef7',
+        'redirect' => 'http://tfe.plateformesocial.be:8080/tfe/plateforme_social/public/auth/facebook/callback',
+        //'redirect' => 'http://localhost:8080/tfe/plateforme_social/public/login/auth/facebook/callback',
+    ],
+
+    'google' => [
+    'client_id' => '812905169796-jlmohop2u01ho858h43v7pc0augjqorn.apps.googleusercontent.com',
+    'client_secret' => 'H7B_QYJtwDb_nnbWEbPCiCA0',
+    'redirect' => 'http://localhost:8080/callback/google',
+],
+
+    'github' => [
+    'client_id' => '494aa8ea9a75cd865ea4',
+    'client_secret' => 'a78eb611151dd01e3657c4906d4a530ef707f019',
+    'redirect' => 'http://localhost:8080/tfe/plateforme_social/public/login/github',
+],
+
+
 ];

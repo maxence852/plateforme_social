@@ -27,6 +27,24 @@
     </style>
 </head>
 <body id="app-layout">
+<script> <!--facebook-->
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1597541063890879',
+            xfbml      : true,
+            version    : 'v2.6'
+        });
+    };
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
@@ -40,15 +58,14 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    Accueil
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Accueil</a></li>
                     <li><a href="{{ route('forum-home') }}">Forum</a></li>
                 </ul>
 
@@ -58,6 +75,7 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Se connecter</a></li>
                         <li><a href="{{ url('/register') }}">S'enregistrer</a></li>
+                        <li><a href="auth/facebook" role="button">S'inscrire avec facebook</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

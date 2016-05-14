@@ -55,6 +55,10 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Mot de passe oublié</a>
+                                <!--<a href="redirect">FB Login</a>-->
+                                <a href="auth/facebook">login with facebook</a>
+                                <a href="redirect/google">G+</a>
+                                <a href="{!!URL::to('github')!!}">Login with Github</a>
                             </div>
                         </div>
                     </form>
