@@ -55,7 +55,8 @@
                                 </button>
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Mot de passe oublié</a>
                                 <a class="btn btn-primary" href="redirect">se connecter via Facebook</a>
-                                <a href="redirect/google">G+</a>
+                                <a class="btn btn-primary btn-danger" href="{{ url('auth/google') }}">se connecter avec google +</a>
+                                <a class="btn btn-primary" href="{{ url('auth/twitter') }}">se connecter via twitter</a>
                             </div>
                         </div>
                     </form>

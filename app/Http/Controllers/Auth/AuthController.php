@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
-
 class AuthController extends Controller
 {
     /*
@@ -73,6 +73,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
 
 
 }

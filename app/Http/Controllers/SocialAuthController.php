@@ -26,4 +26,35 @@ class SocialAuthController extends Controller
 
         return redirect()->to('home2');
     }
+
+    //google
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback(SocialAccountService $service)
+    {
+        $user = $service->createOrGetUser2(Socialite::driver('google')->user());
+
+        auth()->login($user);
+
+        return redirect()->to('home2');
+    }
+
+
+//twitter
+    public function redirectToTwitter()
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    public function handleTwitterCallback(SocialAccountService $service)
+    {
+        $user = $service->createOrGetUser3(Socialite::driver('twitter')->user());
+
+        auth()->login($user);
+
+        return redirect()->to('home2');
+    }
 }

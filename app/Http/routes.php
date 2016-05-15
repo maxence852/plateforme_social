@@ -45,6 +45,16 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('/redirect', 'SocialAuthController@redirect');
     Route::get('/callback', 'SocialAuthController@callback');
 
+    /*google*/
+
+    Route::get('auth/google', 'SocialAuthController@redirectToGoogle');
+    Route::get('auth/google/callback', 'SocialAuthController@handleGoogleCallback');
+
+
+/*twitter*/
+    Route::get('auth/twitter', 'SocialAuthController@redirectToTwitter');
+    Route::get('auth/twitter/callback', 'SocialAuthController@handleTwitterCallback');
+
 
     Route::get('/home2', array('as' => 'home2', 'uses' => function(){
         return view('home2');
