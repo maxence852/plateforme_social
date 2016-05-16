@@ -32,6 +32,7 @@
     Route::get('/category/{id}', array('uses' => 'ForumController@category', 'as' => 'forum-category'));
     Route::get('/thread/{id}', array('uses' => 'ForumController@thread', 'as' => 'forum-thread'));
 });*/
+
 Route::group(['middleware' => 'web'], function ()
 {
     Route::auth();
@@ -40,25 +41,23 @@ Route::group(['middleware' => 'web'], function ()
    Route::get('/home', 'HomeController@index');
 
 
-/*facebook*/
+    /*******facebook**********/
 
     Route::get('/redirect', 'SocialAuthController@redirect');
     Route::get('/callback', 'SocialAuthController@callback');
 
-    /*google*/
+    /*******google************/
 
     Route::get('auth/google', 'SocialAuthController@redirectToGoogle');
     Route::get('auth/google/callback', 'SocialAuthController@handleGoogleCallback');
 
 
-/*twitter*/
+    /*******twitter**********/
+
     Route::get('auth/twitter', 'SocialAuthController@redirectToTwitter');
     Route::get('auth/twitter/callback', 'SocialAuthController@handleTwitterCallback');
 
 
-    Route::get('/home2', array('as' => 'home2', 'uses' => function(){
-        return view('home2');
-    }));
 
     Route::group(['prefix'=> '/forum'], function ()
     {
@@ -118,6 +117,8 @@ Route::group(['middleware' => 'web'], function ()
             });
         });
 
+    /***********paramètre du compte*********************/
+    Route::get('/gestion', 'CompteController@index');
 });
 //'ForumController@index')->name('forum-home');
 //Route::get('/category/{id}','ForumController@category');

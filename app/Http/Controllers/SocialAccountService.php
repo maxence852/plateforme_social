@@ -7,6 +7,8 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAccountService
 {
+    /****************Facebook***********************/
+
     public function createOrGetUser(ProviderUser $providerUser)
     {
         $account = SocialAccount::whereProvider('facebook')
@@ -39,7 +41,9 @@ class SocialAccountService
 
         }
     }
-//google
+
+    /****************Google***********************/
+
     public function createOrGetUser2(ProviderUser $providerUser)
     {
         $account = SocialAccount::whereProvider('google')
@@ -72,7 +76,9 @@ class SocialAccountService
 
         }
     }
-    //twitter
+
+    /****************Twitter***********************/
+
     public function createOrGetUser3(ProviderUser $providerUser)
     {
         $account = SocialAccount::whereProvider('twitter')

@@ -72,6 +72,7 @@
                                     <i class="fa fa-btn fa-user"></i>s'enregistrer
                                 </button>
                                 <a class="btn btn-primary" href="redirect">s'enregistrer via Facebook</a>
+                                <a class="btn btn-primary btn-danger" href="{{ url('auth/google') }}">s'enregistrer avec google +</a>
                             </div>
                         </div>
                     </form>

@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Auth;
 class SocialAuthController extends Controller
 {
+    /****************Facebook***********************/
 
     public function redirect()
     {
@@ -24,10 +25,11 @@ class SocialAuthController extends Controller
 
         auth()->login($user);
 
-        return redirect()->to('home2');
+        return redirect()->to('gestion');
     }
 
-    //google
+    /****************Google***********************/
+
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -39,11 +41,12 @@ class SocialAuthController extends Controller
 
         auth()->login($user);
 
-        return redirect()->to('home2');
+        return redirect()->to('gestion');
     }
 
 
-//twitter
+    /****************Twitter***********************/
+    
     public function redirectToTwitter()
     {
         return Socialite::driver('twitter')->redirect();
@@ -55,6 +58,6 @@ class SocialAuthController extends Controller
 
         auth()->login($user);
 
-        return redirect()->to('home2');
+        return redirect()->to('gestion');
     }
 }

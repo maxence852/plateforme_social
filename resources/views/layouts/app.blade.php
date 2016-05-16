@@ -27,7 +27,9 @@
     </style>
 </head>
 <body id="app-layout">
-<script> <!--facebook-->
+
+<!---------facebook----début------>
+<script>
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '1597541063890879',
@@ -43,7 +45,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+<!---------facebook----fin------>
 
     <nav class="navbar navbar-default">
         <div class="container">
@@ -58,9 +60,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    Accueil
-                </a>
+                <a class="navbar-brand" href="{{ url('/home') }}">Accueil</a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -83,6 +83,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/gestion') }}"><i class="fa fa-btn"></i>Paramètre du compte</a></li>
                             </ul>
                         </li>
                     @endif
